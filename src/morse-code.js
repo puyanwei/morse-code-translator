@@ -13,11 +13,32 @@ alphabet = {
 }
 
 function run(morseToEnglish, textToTranslate) {
-    if (morseToEnglish) {
+    if (
+        morseToEnglish &&
+        hasValidSpacing(textToTranslate) &&
+        textToTranslate.length > 0
+    ) {
         return toEnglish(textToTranslate);
+    } else if (!morseToEnglish && textToTranslate.length > 0) {
+        return toMorse(textToTranslate);
     } else {
-        // toMorse(textToTranslate);
+        return 'Invalid Morse Code Or Spacing';
     }
+}
+
+function toMorse(textToTranslate) {
+    let messageConverted = [];
+    textToTranslate
+        .toLowerCase()
+        .split(' ')
+        .map((word) => {
+            word.split('').map((letter) => {
+                messageConverted.push(alphabet[letter]);
+            });
+            messageConverted.push(' ');
+        });
+    messageConverted.splice(-1, 1);
+    return messageConverted.join(' ');
 }
 
 function toEnglish(textToTranslate) {
@@ -31,6 +52,12 @@ function toEnglish(textToTranslate) {
     });
     messageConverted.splice(-1, 1);
     return messageConverted.join('');
+}
+
+function hasValidSpacing(textToTranslate) {
+    regex = /[^\S\r\n]{4,}/;
+    let output = regex.test(textToTranslate);
+    return (output = !output);
 }
 
 function swapKeyValues(hash) {

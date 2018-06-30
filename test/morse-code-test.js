@@ -1,5 +1,5 @@
 describe('#run', () => {
-    fit('translates morse-code to English', () => {
+    it('translates morse-code to English', () => {
         expect(
             run(
                 true,
