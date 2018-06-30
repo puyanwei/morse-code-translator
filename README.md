@@ -35,7 +35,9 @@ cd morse-code-translator
 open Specrunner.html
 ```
 
-#Tech Stack
+All tests should be passing.
+
+# Tech Stack
 
 -   Javascript
 -   Jasmine
